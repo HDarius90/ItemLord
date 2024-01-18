@@ -17,3 +17,13 @@ export const selectItem = (itemName) => ({
   type: "SELECT_ITEM",
   payload: itemName,
 });
+
+export const toogleOverlay = () => ({
+  type: "TOOGLE_OVERLAY",
+});
+
+export const setTradeType = (tradeType) => ({
+  type: "SET_TRADE_TYPE",
+  payload: tradeType,
+
+})

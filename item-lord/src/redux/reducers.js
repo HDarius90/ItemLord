@@ -20,6 +20,7 @@ const initialState = {
   selectedItem: null,
   tradeType: "",
   pocketSize: 20,
+  isOverlayOpen: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -43,6 +44,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         selectedItem: action.payload,
+      };
+    case "TOOGLE_OVERLAY":
+      return {
+        ...state,
+        isOverlayOpen: !state.isOverlayOpen,
+      };
+    case "SET_TRADE_TYPE":
+      return {
+        ...state,
+        tradeType: action.payload,
       };
     default:
       return state;

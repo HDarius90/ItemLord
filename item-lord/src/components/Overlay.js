@@ -14,12 +14,12 @@ export default function Overlay({
   handleTrade,
   handleDump,
   onInputChange,
-  tradeType,
   itemToTrade,
   maxToTrade,
 }) {
   const market = useSelector((state) => state.market);
   const selectedItem = useSelector((state) => state.selectedItem);
+  const tradeType = useSelector((state) => state.tradeType);
 
   const isValid = () => {
     if (inputValue > 0 && inputValue <= maxToTrade) {

@@ -8,7 +8,8 @@ import Paper from "@mui/material/Paper";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import Overlay from "./Overlay";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { selectItem, setTradeType, toogleOverlay } from "../redux/actions";
 
 export default function Market({
   onInputChange,
@@ -22,6 +23,7 @@ export default function Market({
   tradeType,
   getMaxToTrade,
 }) {
+  const dispatch = useDispatch();
   const market = useSelector((state) => state.market);
 
   const color = { color: "white", backgroundColor: "black" };
@@ -56,10 +58,13 @@ export default function Market({
             </TableRow>
           </TableHead>
           <TableBody>
-            {market.yesterdaysForSale.map((item) => (
+            {market.forSale.map((item) => (
               <TableRow
                 onClick={() => {
-                  openOverlay(item.name, "buy");
+                  dispatch(setTradeType("buy"));
+                  dispatch(selectItem(item.name));
+                  dispatch(toogleOverlay());
+                  // openOverlay(item.name, "buy");
                 }}
                 key={item.name}
                 sx={{
