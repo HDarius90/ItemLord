@@ -1,0 +1,47 @@
+import { initPocket, generateItemsForSale } from "../utils";
+
+// reducers.js
+const initialState = {
+  stats: {
+    location: "Toronto",
+    health: 100,
+    day: 1,
+    lastDay: 30,
+    rank: "Wannabe",
+    cash: 1500,
+    bank: 0,
+    debt: 1000,
+  },
+  pocket: initPocket(),
+  market: {
+    forSale: generateItemsForSale(),
+    yesterdaysForSale: [],
+  },
+  selectedItem: null,
+  tradeType: "",
+  pocketSize: 20,
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "STAY_DAY":
+      return {
+        ...state,
+        stats: { ...state.stats, day: ++state.stats.day },
+      };
+    case "UPDATE_POCKET":
+      return {
+        ...state,
+        pocket: action.payload,
+      };
+    case "ADD_CASH":
+      return {
+        ...state,
+        stats: { ...state.stats, cash: state.stats.cash + action.payload },
+      };
+    default:
+      return state;
+  }
+};
+
+export default reducer;
