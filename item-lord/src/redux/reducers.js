@@ -29,15 +29,20 @@ const reducer = (state = initialState, action) => {
         ...state,
         stats: { ...state.stats, day: ++state.stats.day },
       };
+    case "ADD_CASH":
+      return {
+        ...state,
+        stats: { ...state.stats, cash: state.stats.cash + action.payload },
+      };
     case "UPDATE_POCKET":
       return {
         ...state,
         pocket: action.payload,
       };
-    case "ADD_CASH":
+    case "SELECT_ITEM":
       return {
         ...state,
-        stats: { ...state.stats, cash: state.stats.cash + action.payload },
+        selectedItem: action.payload,
       };
     default:
       return state;

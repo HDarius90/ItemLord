@@ -40,3 +40,13 @@ export const notifications = [
     text: "This is the last day! Better sell all you can!",
   } 
 ];
+
+export const getAllItemsQty = (pocket) => {
+  let qtySum = 0;
+  pocket.forEach((item) => {
+    qtySum += parseInt(item.qty);
+  });
+  return qtySum;
+};
+
+
