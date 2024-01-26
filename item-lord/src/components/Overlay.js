@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 
 export default function Overlay({
   inputValue,
-  isOpen,
   handleClose,
   handleTrade,
   handleDump,
@@ -20,6 +19,8 @@ export default function Overlay({
   const market = useSelector((state) => state.market);
   const selectedItem = useSelector((state) => state.selectedItem);
   const tradeType = useSelector((state) => state.tradeType);
+  const isOverlayOpen = useSelector((state) => state.isOverlayOpen);
+
 
   const isValid = () => {
     if (inputValue > 0 && inputValue <= maxToTrade) {
@@ -37,7 +38,7 @@ export default function Overlay({
   return (
     <>
       <Dialog
-        open={isOpen}
+        open={isOverlayOpen}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
