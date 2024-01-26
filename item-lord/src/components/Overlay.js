@@ -5,11 +5,11 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toogleOverlay } from "../redux/actions";
 
 export default function Overlay({
   inputValue,
-  handleClose,
   handleTrade,
   handleDump,
   onInputChange,
@@ -20,7 +20,11 @@ export default function Overlay({
   const selectedItem = useSelector((state) => state.selectedItem);
   const tradeType = useSelector((state) => state.tradeType);
   const isOverlayOpen = useSelector((state) => state.isOverlayOpen);
+  const dispatch = useDispatch();
 
+  const handleClose = () => {
+    dispatch(toogleOverlay());
+  };
 
   const isValid = () => {
     if (inputValue > 0 && inputValue <= maxToTrade) {
